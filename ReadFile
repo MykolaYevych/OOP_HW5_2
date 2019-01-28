@@ -1,0 +1,57 @@
+package com.gmail.nikolajievich;
+
+import java.io.BufferedReader;
+import java.io.BufferedWriter;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileReader;
+import java.io.FileWriter;
+import java.io.IOException;
+import java.io.PrintWriter;
+import java.io.ObjectInputStream.GetField;
+import java.util.Iterator;
+
+public class ReadFile {
+
+	public static String textRead(File file) throws IOException {
+		StringBuilder sb = new StringBuilder();
+		try {
+
+			BufferedReader bf = new BufferedReader(new FileReader(file));
+			String str;
+			for (; (str = bf.readLine()) != null;) {
+				sb.append(str);
+
+			}
+
+		} catch (FileNotFoundException e) {
+
+			e.printStackTrace();
+		}
+
+		return sb.toString();
+	}
+
+	public static void addToArray(File fileOne, File fileTwo, File result) throws IOException {
+		String[] arrayOne = textRead(fileOne).split(" ");
+		String[] arrayTwo = textRead(fileTwo).split(" ");
+		StringBuilder sb = new StringBuilder();
+		for (int i = 0; i < arrayOne.length; i++) {
+			for (int j = 0; j < arrayTwo.length; j++) {
+				if (arrayOne[i].equals(arrayTwo[j])) {
+					sb.append(arrayOne[i]).append(" ");
+				}
+			}
+		}
+
+	}
+
+	public static void addToFile(String string, File resultFile) throws IOException {
+
+		PrintWriter pr = new PrintWriter(resultFile);
+
+		pr.println(string);
+
+	}
+
+}
